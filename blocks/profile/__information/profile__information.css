@@ -1,0 +1,13 @@
+.profile__information {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  max-width: 505px;
+}
+
+@media screen and (max-width: 680px) {
+  .profile__information {
+    justify-items: center;
+  }
+}
