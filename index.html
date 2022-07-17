@@ -4,14 +4,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Страница-брошюра Путешествия по России">
-  <meta name="keywords"
-    content="Путешествия по России, Чего мы там не видели, Куршская коса, Кольский, Алтай, Зимний Байкал, Карелия, До Байкала <<на собаках>>">
+  <meta name="description" content="Страница с местами в России">
+  <meta name="keywords" content="Места в России, Знаменитые места">
   <meta name="author" content="Денис Тарелко">
   <link rel="stylesheet" href="./pages/index.css">
-  <title>Путешествия по&nbsp;России</title>
+  <title>Mesto Russia</title>
 </head>
-<body>
 
+<body>
+  <div class="page">
+    <header class="header">
+      <img class="header__logo" src="./images/Vector.svg" alt="логотип MESTO RUSSIA">
+    </header>
+    <main class="content">
+      <section class="profile">
+        <figure class="profile__information">
+          <img class="profile__avatar" src="./images/jak-iv-kusto.jpg" alt="выбранный аватар">
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <figcaption class="profile__subtitle">Исследователь океана</figcaption>
+          <button class="profile__edit-button" type="button"></button>
+        </figure>
+        <button class="profile__add-btn" type="button"></button>
+      </section>
+      <section class="elements">
+        <figure class="element">
+          <img class="element__image" src="./images/Karachevsk.jpg" alt="Фотография из Карачаевска">
+          <figcaption class="element__caption">
+            <p class="element__text">Карачаевск</p>
+            <button class="element__like" type="button"></button>
+          </figcaption>
+        </figure>
+        <figure class="element">
+          <img class="element__image" src="./images/Elbrus.jpg" alt="Фотография горы Эльбрус">
+          <figcaption class="element__caption">
+            <p class="element__text">Гора Эльбрус</p>
+            <button class="element__like" type="button"></button>
+          </figcaption>
+        </figure>
+        <figure class="element">
+          <img class="element__image" src="./images/Dombai.jpg" alt="Фотография Домбай">
+          <figcaption class="element__caption">
+            <p class="element__text">Домбай</p>
+            <button class="element__like" type="button"></button>
+          </figcaption>
+        </figure>
+        <figure class="element">
+          <img class="element__image" src="./images/Elbrus.jpg" alt="Фотография горы Эльбрус">
+          <figcaption class="element__caption">
+            <p class="element__text">Гора Эльбрус</p>
+            <button class="element__like" type="button"></button>
+          </figcaption>
+        </figure>
+        <figure class="element">
+          <img class="element__image" src="./images/Dombai.jpg" alt="Фотография Домбай">
+          <figcaption class="element__caption">
+            <p class="element__text">Домбай</p>
+            <button class="element__like" type="button"></button>
+          </figcaption>
+        </figure>
+        <figure class="element">
+          <img class="element__image" src="./images/Karachevsk.jpg" alt="Фотография из Карачаевска">
+          <figcaption class="element__caption">
+            <p class="element__text">Карачаевск</p>
+            <button class="element__like" type="button"></button>
+          </figcaption>
+        </figure>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2022 Mesto Russia</p>
+    </footer>
+  </div>
+  <section class="popup">
+    <div class="popup__container">
+    </div>
+    <form action="" class="popup__form" autocomplete="off" novalidate>
+      <button class="popup__close-btn" type="button" title="Закрыть окно"></button>
+      <fieldset class="popup__field">
+        <legend class="popup__heading">Редактировать профиль</legend>
+        <input class="popup__input popup__input_name" placeholder="Введите имя">
+        <input class="popup__input popup__input_profession" placeholder="Введите профессию">
+        <button class="popup__submit-btn" type="submit">Сохранить</button>
+      </fieldset>
+    </form>
+  </section>
+  <script src="./scripts/script.js"></script>
 </body>
+
 </html>

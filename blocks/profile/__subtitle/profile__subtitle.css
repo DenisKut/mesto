@@ -1,0 +1,16 @@
+.profile__subtitle {
+  grid-column-start: 2;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+@media screen and (max-width: 680px) {
+  .profile__subtitle {
+    grid-column-start: 1;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+  }
+}
