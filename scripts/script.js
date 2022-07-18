@@ -2,8 +2,8 @@
 
 let editButton = document.querySelector(".profile__edit-button");
 let popupEdit = document.querySelector(".popup");
-let editFormName = popupEdit.querySelector(".popup__input_name");
-let editFormProfession = popupEdit.querySelector(".popup__input_profession");
+let editFormName = popupEdit.querySelector(".popup__input_section_name");
+let editFormProfession = popupEdit.querySelector(".popup__input_section_profession");
 let profileName = document.querySelector(".profile__title");
 let profileProfession = document.querySelector(".profile__subtitle");
 let editCloseButton = popupEdit.querySelector(".popup__close-btn");

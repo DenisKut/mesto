@@ -77,16 +77,16 @@
   </div>
   <section class="popup">
     <div class="popup__container">
+      <form class="popup__form" autocomplete="off" novalidate>
+        <button class="popup__close-btn" type="button" title="Закрыть окно"></button>
+        <fieldset class="popup__field">
+          <legend class="popup__heading">Редактировать профиль</legend>
+          <input class="popup__input popup__input_section_name" placeholder="Введите имя">
+          <input class="popup__input popup__input_section_profession" placeholder="Введите профессию">
+          <button class="popup__submit-btn" type="submit">Сохранить</button>
+        </fieldset>
+      </form>
     </div>
-    <form class="popup__form" autocomplete="off" novalidate>
-      <button class="popup__close-btn" type="button" title="Закрыть окно"></button>
-      <fieldset class="popup__field">
-        <legend class="popup__heading">Редактировать профиль</legend>
-        <input class="popup__input popup__input_name" placeholder="Введите имя">
-        <input class="popup__input popup__input_profession" placeholder="Введите профессию">
-        <button class="popup__submit-btn" type="submit">Сохранить</button>
-      </fieldset>
-    </form>
   </section>
   <script src="./scripts/script.js"></script>
 </body>
