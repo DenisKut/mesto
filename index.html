@@ -27,55 +27,23 @@
         <button class="profile__add-btn" aria-label="AddCard" type="button"></button>
       </section>
       <section class="elements">
-        <article class="element">
-          <img class="element__image" src="./images/Karachevsk.jpg" alt="Фотография из Карачаевска">
-          <div class="element__caption">
-            <h3 class="element__text">Карачаевск</h3>
-            <button class="element__like" aria-label="LikeCard" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/Elbrus.jpg" alt="Фотография горы Эльбрус">
-          <div class="element__caption">
-            <h3 class="element__text">Гора Эльбрус</h3>
-            <button class="element__like" aria-label="LikeCard" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/Dombai.jpg" alt="Фотография Домбай">
-          <div class="element__caption">
-            <h3 class="element__text">Домбай</h3>
-            <button class="element__like" aria-label="LikeCard" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/Elbrus.jpg" alt="Фотография горы Эльбрус">
-          <div class="element__caption">
-            <h3 class="element__text">Гора Эльбрус</h3>
-            <button class="element__like" aria-label="LikeCard" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/Dombai.jpg" alt="Фотография Домбай">
-          <div class="element__caption">
-            <h3 class="element__text">Домбай</h3>
-            <button class="element__like" aria-label="LikeCard" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/Karachevsk.jpg" alt="Фотография из Карачаевска">
-          <div class="element__caption">
-            <h3 class="element__text">Карачаевск</h3>
-            <button class="element__like" aria-label="LikeCard" type="button"></button>
-          </div>
-        </article>
+        <template id="element">
+          <article class="element">
+            <button class="element__delete-btn" aria-label="DeleteCard" type="button" title="Удалить карточку"></button>
+            <img class="element__image" src="" alt="" title="Рассмотреть картинку">
+            <div class="element__caption">
+              <h3 class="element__text"></h3>
+              <button class="element__like" aria-label="LikeCard" type="button"></button>
+            </div>
+          </article>
+        </template>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
   </div>
-  <div class="popup">
+  <div class="popup popup_edit">
     <div class="popup__container">
       <form class="popup__form" name="EditProfile" autocomplete="off" novalidate>
         <button class="popup__close-btn" aria-label="ClosePopup" type="button" title="Закрыть окно"></button>
@@ -88,6 +56,28 @@
       </form>
     </div>
   </div>
+  <div class="popup popup_add">
+    <div class="popup__container">
+      <form class="popup__form" name="AddCard" autocomplete="off" novalidate>
+        <button class="popup__close-btn" aria-label="ClosePopup" type="button" title="Закрыть окно"></button>
+        <fieldset class="popup__field">
+          <legend class="popup__heading">Новое место</legend>
+          <input name="CardName" class="popup__input popup__input_section_name" placeholder="Название">
+          <input name="CardLink" class="popup__input popup__input_section_link" placeholder="Ссылка на картинку">
+          <button class="popup__submit-btn" aria-label="SavePopup" type="submit">Создать</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  <template id="popup-view">
+    <div class="popup-view">
+      <div class="popup-view__container">
+        <button class="popup-view__close-btn" aria-label="ClosePopup" type="button" title="Закрыть окно"></button>
+        <img class="popup-view__image" src="" alt="">
+        <p class="popup-view__subtitle"></p>
+      </div>
+    </div>
+  </template>
   <script src="./scripts/script.js"></script>
 </body>
 
