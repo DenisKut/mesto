@@ -1,6 +1,7 @@
 @import url("../vendor/normalize.css");
 @import url("../fonts/Inter.css");
 @import url("../blocks/page/page.css");
+@import url("../blocks/content/content.css");
 @import url("../blocks/header/header.css");
 @import url("../blocks/header/__logo/header__logo.css");
 @import url("../blocks/profile/profile.css");
@@ -30,10 +31,9 @@
 @import url("../blocks/popup/__input/_section/popup__input_section_name.css");
 @import url("../blocks/popup/__input/_section/popup__input_section_profession.css");
 @import url("../blocks/popup/__submit-btn/popup__submit-btn.css");
-@import url("../blocks/popup/_opened/popup_opened.css");
 @import url("../blocks/popup-view/popup-view.css");
 @import url("../blocks/popup-view/__container/popup-view__container.css");
 @import url("../blocks/popup-view/__image/popup-view__image.css");
 @import url("../blocks/popup-view/__subtitle/popup-view__subtitle.css");
 @import url("../blocks/popup-view/__close-btn/popup-view__close-btn.css");
-@import url("../blocks/popup-view/_visibility/popup-view_visible.css");
+@import url("../blocks/popup/_opened/popup_opened.css");
