@@ -31,6 +31,8 @@ const initialCards = [
 const card = document.querySelector('#element').content;
 const cardsContainer = document.querySelector('.elements');
 const imagePopup = document.querySelector('.popup-view');
+const pictureImagePopup = imagePopup.querySelector('.popup-view__image');
+const subtitleImagePopup = imagePopup.querySelector('.popup-view__subtitle');
 const page = document.querySelector('body');
 const cardCopy = card.querySelector('.element');
 
@@ -52,19 +54,21 @@ const formAddLink = cardAddingPopup.querySelector(".popup__input_section_link");
 
 function createCard(elementLink, elementName) {
   const card = cardCopy.cloneNode(true);
-  card.querySelector('.element__image').src = elementLink;
-  card.querySelector('.element__image').alt = 'Изображение' + elementName;
-  card.querySelector('.element__text').textContent = elementName;
+  const cardImage = card.querySelector('.element__image');
+  const cardText = card.querySelector('.element__text');
+  cardImage.src = elementLink;
+  cardImage.alt = 'Изображение' + elementName;
+  cardText.textContent = elementName;
   card.querySelector('.element__like').addEventListener('click', (evt) => {
     evt.target.classList.toggle('element__like_enabled');
   });
   card.querySelector('.element__delete-btn').addEventListener('click', (evt) => {
     evt.target.closest('.element').remove();
   });
-  card.querySelector('.element__image').addEventListener('click', (evt) => {
-    imagePopup.querySelector('.popup-view__image').src = evt.target.src;
-    imagePopup.querySelector('.popup-view__image').alt = 'Изображение' + elementName;
-    imagePopup.querySelector('.popup-view__subtitle').textContent = card.querySelector('.element__text').textContent;
+  cardImage.addEventListener('click', (evt) => {
+    pictureImagePopup.src = evt.target.src;
+    pictureImagePopup.alt = 'Изображение' + elementName;
+    subtitleImagePopup.textContent = cardText.textContent;
     openPopup(imagePopup);
   });
   return card;
@@ -115,18 +119,16 @@ formElementCloseButton.addEventListener('click', closeProfilePopup);
 popupFormEdit.addEventListener('submit', saveFormProfilePopup);
 
 buttonAdd.addEventListener('click', () => {
+  formAddLink.value = '';
+  formAddName.value = '';
   openPopup(cardAddingPopup);
 })
 cardAddingPopupCloseBtn.addEventListener('click', () => {
-  formAddLink.value = '';
-  formAddName.value = '';
   closePopup(cardAddingPopup);
 })
 popupFormAdd.addEventListener('submit', (evt) => {
   evt.preventDefault();
   renderCard(createCard(formAddLink.value, formAddName.value));
-  formAddLink.value = '';
-  formAddName.value = '';
   closePopup(cardAddingPopup);
 })
 
