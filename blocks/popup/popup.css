@@ -22,3 +22,7 @@
   text-rendering: optimizeLegibility;
 }
 
+.popup:hover {
+  cursor: pointer;
+}
+

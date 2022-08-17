@@ -5,3 +5,7 @@
   font-size: 12px;
   line-height: 15px;
 }
+
+.popup-view__subtitle:hover {
+  cursor: default;
+}

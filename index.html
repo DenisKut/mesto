@@ -49,8 +49,10 @@
         <button class="popup__close-btn" aria-label="ClosePopup" type="button" title="Закрыть окно"></button>
         <fieldset class="popup__field">
           <legend class="popup__heading">Редактировать профиль</legend>
-          <input name="ProfileName" class="popup__input popup__input_section_name" placeholder="Введите имя">
-          <input name="ProfileProfession" class="popup__input popup__input_section_profession" placeholder="Введите профессию">
+          <input id="profile-name" name="ProfileName" class="popup__input popup__input_section_name" placeholder="Введите имя" minlength="2" maxlength="40" required>
+          <span class="popup__input-error profile-name-error" ></span>
+          <input id="profile-profession" name="ProfileProfession" class="popup__input popup__input_section_profession" placeholder="Введите профессию" minlength="2" maxlength="200" required>
+          <span class="popup__input-error profile-profession-error" ></span>
           <button class="popup__submit-btn" aria-label="SavePopup" type="submit">Сохранить</button>
         </fieldset>
       </form>
@@ -62,8 +64,10 @@
         <button class="popup__close-btn" aria-label="ClosePopup" type="button" title="Закрыть окно"></button>
         <fieldset class="popup__field">
           <legend class="popup__heading">Новое место</legend>
-          <input name="CardName" class="popup__input popup__input_section_name" placeholder="Название">
-          <input name="CardLink" class="popup__input popup__input_section_link" placeholder="Ссылка на картинку">
+          <input id="card-name" name="CardName" class="popup__input popup__input_section_name" placeholder="Название" minlength="2" maxlength="30" required>
+          <span class="popup__input-error card-name-error" ></span>
+          <input id="card-link" name="CardLink" class="popup__input popup__input_section_link" placeholder="Ссылка на картинку" type="url" required>
+          <span class="popup__input-error card-link-error"></span>
           <button class="popup__submit-btn" aria-label="SavePopup" type="submit">Создать</button>
         </fieldset>
       </form>
@@ -77,6 +81,7 @@
       </div>
     </div>
   <script src="./scripts/script.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 
 </html>

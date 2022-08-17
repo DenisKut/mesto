@@ -51,6 +51,7 @@ const cardAddingPopupCloseBtn = cardAddingPopup.querySelector(".popup__close-btn
 const popupFormAdd = cardAddingPopup.querySelector(".popup__form");
 const formAddName = cardAddingPopup.querySelector(".popup__input_section_name");
 const formAddLink = cardAddingPopup.querySelector(".popup__input_section_link");
+const popups = [imagePopup, profilePopup, cardAddingPopup];
 
 function createCard(elementLink, elementName) {
   const card = cardCopy.cloneNode(true);
@@ -59,18 +60,6 @@ function createCard(elementLink, elementName) {
   cardImage.src = elementLink;
   cardImage.alt = 'Изображение' + elementName;
   cardText.textContent = elementName;
-  card.querySelector('.element__like').addEventListener('click', (evt) => {
-    evt.target.classList.toggle('element__like_enabled');
-  });
-  card.querySelector('.element__delete-btn').addEventListener('click', (evt) => {
-    evt.target.closest('.element').remove();
-  });
-  cardImage.addEventListener('click', (evt) => {
-    pictureImagePopup.src = evt.target.src;
-    pictureImagePopup.alt = 'Изображение' + elementName;
-    subtitleImagePopup.textContent = cardText.textContent;
-    openPopup(imagePopup);
-  });
   return card;
 }
 
@@ -132,3 +121,37 @@ popupFormAdd.addEventListener('submit', (evt) => {
   closePopup(cardAddingPopup);
 })
 
+cardsContainer.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('element__like')) {
+    evt.target.classList.toggle('element__like_enabled');
+  }
+});
+
+cardsContainer.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('element__delete-btn')) {
+    evt.target.closest('.element').remove();
+  }
+});
+
+cardsContainer.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('element__image')) {
+    pictureImagePopup.src = evt.target.src;
+    pictureImagePopup.alt = 'Изображение' + evt.target.alt;
+    subtitleImagePopup.textContent = evt.target.closest('.element').querySelector('.element__text').textContent;
+    openPopup(imagePopup);
+  }
+});
+
+page.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup-view')) {
+    closePopup(evt.target);
+  }
+});
+
+page.addEventListener('keydown', (evt) => {
+  if(evt.key === "Escape") {
+    popups.forEach(element => {
+      closePopup(element);
+    });
+  }
+});
