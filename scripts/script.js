@@ -1,31 +1,5 @@
 "use strict"
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+import classes from "./validate.js";
 
 //Выбор templat-а и родительского Grid-контейнера
 const card = document.querySelector('#element').content;
@@ -52,6 +26,8 @@ const popupFormAdd = cardAddingPopup.querySelector(".popup__form");
 const formAddName = cardAddingPopup.querySelector(".popup__input_section_name");
 const formAddLink = cardAddingPopup.querySelector(".popup__input_section_link");
 const popups = [imagePopup, profilePopup, cardAddingPopup];
+const profileSavingButton = profilePopup.querySelector(classes.submitButtonSelector);
+const cardSavingButton = cardAddingPopup.querySelector(classes.submitButtonSelector);
 
 function createCard(elementLink, elementName) {
   const card = cardCopy.cloneNode(true);
@@ -69,17 +45,27 @@ function renderCard (createCard) {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  page.addEventListener('keydown', closeByEsc);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  page.removeEventListener('keydown', closeByEsc);
 }
 
+function closeByEsc(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
 //Открытие попапа редактирования
 function showProfilePopup() {
   formElementEditName.value = profileName.textContent;
   formElementEditProfession.value = profileProfession.textContent;
   openPopup(profilePopup);
+  profileSavingButton.setAttribute('disabled', 'disabled');
+  profileSavingButton.classList.add(classes.inactiveButtonClass);
 }
 
 function closeProfilePopup() {
@@ -111,6 +97,8 @@ buttonAdd.addEventListener('click', () => {
   formAddLink.value = '';
   formAddName.value = '';
   openPopup(cardAddingPopup);
+  cardSavingButton.setAttribute('disabled', 'disabled');
+  cardSavingButton.classList.add(classes.inactiveButtonClass);
 })
 cardAddingPopupCloseBtn.addEventListener('click', () => {
   closePopup(cardAddingPopup);
@@ -145,13 +133,5 @@ cardsContainer.addEventListener('click', (evt) => {
 page.addEventListener('click', (evt) => {
   if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup-view')) {
     closePopup(evt.target);
-  }
-});
-
-page.addEventListener('keydown', (evt) => {
-  if(evt.key === "Escape") {
-    popups.forEach(element => {
-      closePopup(element);
-    });
   }
 });

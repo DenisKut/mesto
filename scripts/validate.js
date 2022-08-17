@@ -69,3 +69,4 @@ const toggleButtonState = (inputList, buttonElement, classes) => {
 };
 
 enableValidation(classes);
+export default classes;
