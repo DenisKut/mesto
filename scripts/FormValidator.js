@@ -60,5 +60,12 @@ class FormValidator {
     });
     this._setEventListeners();
   };
+
+  resetValidation() {
+    this._toggleButtonState(); // управление кнопкой сабмита
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement); // очистка ошибок
+    });
+  }
 }
 export default FormValidator;
