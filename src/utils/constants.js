@@ -34,28 +34,21 @@ const classes = {
   errorClass: 'popup__input-error'
 };
 
-const page = document.querySelector('body');
-const imagePopup = document.querySelector('.popup-view');
-const pictureImagePopup = imagePopup.querySelector('.popup-view__image');
-const subtitleImagePopup = imagePopup.querySelector('.popup-view__subtitle');
-const cardsContainer = document.querySelector('.elements');
+const cardsContainerSelector = '.elements';
+const imagePopupSelector = '.popup-view';
+const cardAddingPopupSelector = ".popup_add";
+const profilePopupSelector = ".popup_edit";
+const profileNameSelector = ".profile__title";
+const profileProfessionSelector = ".profile__subtitle";
+const buttonEdit = document.querySelector(".profile__edit-button");
+const buttonAdd = document.querySelector('.profile__add-btn');
+const profileName = document.querySelector(profileNameSelector);
+const profileProfession = document.querySelector(profileProfessionSelector);
+const popupEdit = document.querySelector('.popup_edit');
+const nameInput = popupEdit.querySelector('.popup__input_section_name');
+const professionInput = popupEdit.querySelector('.popup__input_section_profession');
 
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  page.addEventListener('keydown', closeByEsc);
-}
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  page.removeEventListener('keydown', closeByEsc);
-}
-
-function closeByEsc(evt) {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);
-  }
-}
-
-export {initialCards, page, imagePopup, pictureImagePopup, subtitleImagePopup,
-cardsContainer, openPopup, closePopup, closeByEsc, classes};
+export {initialCards, cardsContainerSelector, imagePopupSelector,
+  cardAddingPopupSelector, profilePopupSelector, profileNameSelector,
+  profileProfessionSelector, buttonAdd, buttonEdit, profileName,
+  profileProfession, classes, nameInput, professionInput};

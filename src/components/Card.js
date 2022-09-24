@@ -26,7 +26,7 @@ class Card {
 
   _setEventListeners() {
     this._cardImage.addEventListener('click', () => {
-      this._handleCardClick(this._text, this._image);
+      this._handleCardClick(this._image, this._text);
     });
 
     this._element.querySelector('.element__like').addEventListener('click', () => {

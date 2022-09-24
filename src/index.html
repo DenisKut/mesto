@@ -7,19 +7,18 @@
   <meta name="description" content="Страница с местами в России">
   <meta name="keywords" content="Места в России, Знаменитые места">
   <meta name="author" content="Денис Тарелко">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto Russia</title>
 </head>
 
 <body>
   <div class="page">
     <header class="header">
-      <img class="header__logo" src="./images/Vector.svg" alt="логотип MESTO RUSSIA">
+      <img class="header__logo" src="<%=require('./images/Vector.svg')%>" alt="логотип MESTO RUSSIA">
     </header>
     <main class="content">
       <section class="profile">
         <div class="profile__information">
-          <img class="profile__avatar" src="./images/jak-iv-kusto.jpg" alt="выбранный аватар">
+          <img class="profile__avatar" src="<%=require('./images/jak-iv-kusto.jpg')%>" alt="выбранный аватар">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
           <p class="profile__subtitle">Исследователь океана</p>
           <button class="profile__edit-button" aria-label="Edit" type="button"></button>
@@ -83,7 +82,7 @@
   <!-- <script src="./scripts/data.js"></script>
   <script type="module" src="./scripts/script.js"></script>
   <script type="module" src="./scripts/validate.js"></script> -->
-  <script type='module' src="./scripts/index.js"></script>
+  <!-- <script type='module' src="../src/pages/index.js"></script> -->
 </body>
 
 </html>
