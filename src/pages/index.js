@@ -74,11 +74,10 @@ buttonAdd.addEventListener('click', () => {
   popupAddingCard.open();
 });
 
-console.log(userInfo.getUserInfo());
-
 buttonEdit.addEventListener('click', () => {
   formValidators['EditProfile'].resetValidation();
   const profileData = userInfo.getUserInfo();
+  // popupProfileEdit.setInputValues(profileData);
   nameInput.value = profileData.nameValue;
   professionInput.value = profileData.professionValue;
   popupProfileEdit.open();
@@ -91,12 +90,11 @@ const addCard = (link, name) => {
 
 // default card prepending
 const cardList = new Section ({
-  items: initialCards,
   renderer: item => {
     cardList.addItem(addCard(item.link, item.name));
   }},
   cardsContainerSelector
 );
 
-cardList.renderItems();
+cardList.renderItems(initialCards);
 enableValidation();
