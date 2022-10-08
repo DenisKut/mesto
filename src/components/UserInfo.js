@@ -1,7 +1,8 @@
 export default class UserInfo {
-  constructor({selectorName, selectorProfession}) {
+  constructor({selectorName, selectorProfession, avatarSelector}) {
     this._fieldName = document.querySelector(selectorName);
     this._fieldProfession = document.querySelector(selectorProfession);
+    this._avatar = document.querySelector(avatarSelector);
   }
 
   getUserInfo() {
@@ -12,8 +13,9 @@ export default class UserInfo {
     return info;
   }
 
-  setUserInfo(inputName, inputProfession) {
-    this._fieldName.textContent = inputName;
-    this._fieldProfession.textContent = inputProfession;
+  setUserInfo(inputs) {
+    this._fieldName.textContent = inputs.name;
+    this._fieldProfession.textContent = inputs.about;
+    this._avatar.style.backgroundImage = `url(${inputs.avatar})`;
   }
 }

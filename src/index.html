@@ -18,7 +18,7 @@
     <main class="content">
       <section class="profile">
         <div class="profile__information">
-          <img class="profile__avatar" src="<%=require('./images/jak-iv-kusto.jpg')%>" alt="выбранный аватар">
+          <div class="profile__avatar"></div>
           <h1 class="profile__title">Жак-Ив Кусто</h1>
           <p class="profile__subtitle">Исследователь океана</p>
           <button class="profile__edit-button" aria-label="Edit" type="button"></button>
@@ -32,7 +32,10 @@
             <img class="element__image" alt="" title="Рассмотреть картинку">
             <div class="element__caption">
               <h3 class="element__text"></h3>
-              <button class="element__like" aria-label="LikeCard" type="button"></button>
+              <div class="element__like-section">
+                <button class="element__like" aria-label="LikeCard" type="button"></button>
+                <p class="element__number-of-likes">3</p>
+              </div>
             </div>
           </article>
         </template>
@@ -49,9 +52,9 @@
         <fieldset class="popup__field">
           <legend class="popup__heading">Редактировать профиль</legend>
           <input id="profile-name" name="ProfileName" class="popup__input popup__input_section_name" placeholder="Введите имя" minlength="2" maxlength="40" required>
-          <span class="popup__input-error profile-name-error" ></span>
+          <span class="profile-name-error" ></span>
           <input id="profile-profession" name="ProfileProfession" class="popup__input popup__input_section_profession" placeholder="Введите профессию" minlength="2" maxlength="200" required>
-          <span class="popup__input-error profile-profession-error" ></span>
+          <span class="profile-profession-error" ></span>
           <button class="popup__submit-btn" aria-label="SavePopup" type="submit">Сохранить</button>
         </fieldset>
       </form>
@@ -64,21 +67,47 @@
         <fieldset class="popup__field">
           <legend class="popup__heading">Новое место</legend>
           <input id="card-name" name="CardName" class="popup__input popup__input_section_name" placeholder="Название" minlength="2" maxlength="30" required>
-          <span class="popup__input-error card-name-error" ></span>
+          <span class="card-name-error" ></span>
           <input id="card-link" name="CardLink" class="popup__input popup__input_section_link" placeholder="Ссылка на картинку" type="url" required>
-          <span class="popup__input-error card-link-error"></span>
+          <span class="card-link-error"></span>
           <button class="popup__submit-btn" aria-label="SavePopup" type="submit">Создать</button>
         </fieldset>
       </form>
     </div>
   </div>
-    <div class="popup popup-view">
-      <div class="popup-view__container">
-        <button class="popup__close-btn" aria-label="ClosePopup" type="button" title="Закрыть окно"></button>
-        <img class="popup-view__image" alt="">
-        <p class="popup-view__subtitle"></p>
+  <div class="popup popup-view">
+    <div class="popup-view__container">
+      <button class="popup__close-btn" aria-label="ClosePopup" type="button" title="Закрыть окно"></button>
+      <img class="popup-view__image" alt="">
+      <p class="popup-view__subtitle"></p>
+    </div>
+  </div>
+
+  <div class="popup popup-confirm">
+    <div class="popup__container">
+      <button class="popup__close-btn" aria-label="ClosePopup" type="button" title="Закрыть окно"></button>
+      <div class="popup__form">
+        <div class="popup__field">
+          <h3 class="popup-confirm__heading">Вы уверены?</h3>
+          <button class="popup__submit-btn popup-confirm__submit-btn" aria-label="SavePopup" type="submit">Да</button>
+        </div>
       </div>
     </div>
+  </div>
+
+  <div class="popup popup-avatar-edit">
+    <div class="popup__container">
+      <form class="popup__form" name="EditAvatar" autocomplete="off" novalidate>
+        <button class="popup__close-btn" aria-label="ClosePopup" type="button" title="Закрыть окно"></button>
+        <fieldset class="popup__field">
+          <legend class="popup__heading">Обновить аватар</legend>
+          <input id="avatar-link" name="AvatarLink" class="popup__input popup__input_section_avatar" placeholder="Ссылка на картинку" type="url" required>
+          <span class="popup__input-error avatar-link-error"></span>
+          <button class="popup__submit-btn" aria-label="SavePopup" type="submit">Сохранить</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
   <!-- <script src="./scripts/data.js"></script>
   <script type="module" src="./scripts/script.js"></script>
   <script type="module" src="./scripts/validate.js"></script> -->

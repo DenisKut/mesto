@@ -1,9 +1,17 @@
 class Card {
-  constructor(image, text, templateSelector, handleCardClick) {
-    this._image = image;
-    this._text = text;
+  constructor(dataObj, templateSelector, handleCardClick,
+    handleCardDelete, handleLikeAdd, handlLikeDelete, userId
+    ) {
+    this._data = dataObj;
+    this._image = dataObj.link;
+    this._text = dataObj.name;
+    this._likes = dataObj.likes;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._handleCardDelete = handleCardDelete;
+    this._handleLikeAdd = handleLikeAdd;
+    this._handleLikeDelete = handlLikeDelete;
+    this._userId = userId;
   }
 
   _getTemplate() {
@@ -16,13 +24,20 @@ class Card {
     return cardElement;
   }
 
-  _handleLikeCard() {
-    this._likeButton.classList.toggle('element__like_enabled');
+  _checkForLike() {
+    this._likes.forEach(item => {
+      if (item._id == this._userId) {
+        this._likeButton.classList.add('element__like_enabled');
+      }
+    })
   }
 
-  _handleDeleteCard() {
-    this._element.remove();
-    this._element = null;
+  _checkForIdentity() {
+    if ((this._userId == this._data.owner._id) || (this._userId == undefined)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   _setEventListeners() {
@@ -30,23 +45,36 @@ class Card {
       this._handleCardClick(this._image, this._text);
     });
 
-    this._element.querySelector('.element__like').addEventListener('click', () => {
-      this._handleLikeCard();
+    this._likeButton.addEventListener('click', (evt) => {
+      if (evt.target.classList.contains('element__like_enabled')) {
+        this._handleLikeDelete(evt, this._cardData);
+      } else {
+        this._handleLikeAdd(evt, this._cardData);
+      }
     });
 
-    this._element.querySelector('.element__delete-btn').addEventListener('click', () => {
-      this._handleDeleteCard();
+    this._deleteButton.addEventListener('click', () => {
+      this._handleCardDelete({data: this._data, element: this._element});
     });
   }
 
   createCard() {
     this._element = this._getTemplate();
+    this._deleteButton = this._element.querySelector(".element__delete-btn");
     this._cardImage = this._element.querySelector('.element__image');
     this._likeButton = this._element.querySelector('.element__like');
+    this._likesNumber = this._element.querySelector('.element__number-of-likes');
+    this._likesNumber.textContent = this._likes.length;
+    this._setEventListeners();
+    if (!this._checkForIdentity()) {
+      this._deleteButton.remove();
+      this._deleteButton = null;
+    }
+    this._cardData = {data: this._data, numberOfLikes: this._likesNumber}
     this._cardImage.src = this._image;
     this._cardImage.alt = 'Изображение' + this._text;
     this._element.querySelector('.element__text').textContent = this._text;
-    this._setEventListeners();
+    this._checkForLike();
     return this._element;
   }
 }
