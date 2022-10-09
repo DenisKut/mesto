@@ -2,9 +2,9 @@
 import'./index.css';
 
 import vector from '../images/Vector.svg';
-import Group from '../images/Group.svg';
-import Group2x from '../images/Group@2x.svg';
-import Jak from '../images/jak-iv-kusto.jpg';
+import group from '../images/Group.svg';
+import group2x from '../images/Group@2x.svg';
+import jak from '../images/jak-iv-kusto.jpg';
 import avatarEdit from '../images/avatar-edit.svg';
 import Card from "../components/Card.js";
 import PopupWithConfirm from '../components/PopupWithConfirm.js';
@@ -20,15 +20,14 @@ import { cardsContainerSelector, imagePopupSelector,
   profileProfession, classes, nameInput, professionInput , avatarSelector,
   avatar, popupConfirmSelector, buttonConfirm, popupProfileImage
 } from '../utils/constants.js';
-import { data, error } from 'jquery';
 
 const formValidators = {};
 
 const imagesChange = [
   {name: 'vector', link: vector},
-  {name: 'Group', link: Group},
-  {name: 'Group2x', link: Group2x},
-  {name: 'jak', link: Jak},
+  {name: 'Group', link: group},
+  {name: 'Group2x', link: group2x},
+  {name: 'jak', link:jak},
   {name: 'avatarEdit', link: avatarEdit},
 ];
 
@@ -67,7 +66,7 @@ const enableValidation = () => {
 // default card prepending
 const cardList = new Section ({
   renderer: data => {
-    cardList.addItem(addCard(data.card, data.userId));
+    cardList.addItem(createCard(data.card, data.userId));
   }},
   cardsContainerSelector
 );
@@ -76,37 +75,32 @@ const cardList = new Section ({
 const userInfo = new UserInfo({selectorName: profileNameSelector,
   selectorProfession: profileProfessionSelector, avatarSelector: avatarSelector});
 
-  const addCard = (data, userId) => {
-    const card = new Card(data, '#element', handleCardClick, handleCardDelete,
-    handleCardLikeAdd, handleCardLikeDelete, userId);
-    return card.createCard();
-  }
+const createCard = (data, userId) => {
+  const card = new Card(data, '#element', handleCardClick,
+  (data) => {
+      popupConfirmDelete.open(data, card);
+    },
+    (evt, cardData) => {
+      api.addLike(cardData.data)
+        .then(res => {
+          card.setLikes(res.likes.length);
+        })
+        .catch(error => console.log(error));
+    },
+    (evt, cardData) => {
+      api.deleteLike(cardData.data)
+        .then(res => {
+          card.setLikes(res.likes.length);
+        })
+        .catch(error => console.log(error));
+    },
+    userId);
+  return card.createCard();
+}
 
 //handler for CardClick listeners
 const handleCardClick = (link, name) => {
   popupImage.open(link, name);
-}
-
-const handleCardDelete = (element) => {
-  popupConfirmDelete.open(element);
-}
-
-const handleCardLikeAdd = (evt, cardData) => {
-  api.addLike(cardData.data)
-    .then(res => {
-      evt.target.classList.add('element__like_enabled');
-      cardData.numberOfLikes.textContent = res.likes.length;
-    })
-    .catch(error => console.log(error));
-};
-
-const handleCardLikeDelete = (evt, cardData) => {
-  api.deleteLike(cardData.data)
-  .then(res => {
-    cardData.numberOfLikes.textContent = res.likes.length;
-    evt.target.classList.remove('element__like_enabled');
-  })
-  .catch(error => console.log(error));
 }
 
 //image popup initialization & setting listeners
@@ -119,7 +113,7 @@ const popupAddingCard = new PopupWithForm(cardAddingPopupSelector,
     submitBtn.textContent = 'Сохранение...';
     api.addCard(data)
       .then(card => {
-        cardList.addItem(addCard(card));
+        cardList.addItem(createCard(card));
         popupAddingCard.close();
       })
       .catch(error => console.log(error))
@@ -150,17 +144,15 @@ const popupProfileEdit = new PopupWithForm(profilePopupSelector,
 popupProfileEdit.setEventListeners();
 
 //Confirm deleting window
-const popupConfirmDelete = new PopupWithConfirm(popupConfirmSelector, cardData => {
+const popupConfirmDelete = new PopupWithConfirm(popupConfirmSelector,
+  (data, card) => {
   buttonConfirm.textContent = 'Удаление...';
-  api.deleteCard(cardData.data)
+  api.deleteCard(data.data)
     .then(() => {
-      cardData.element.remove();
-      cardData.element = null;
+      card.deleteCard();
       popupConfirmDelete.close();
     })
-    .catch(error => {
-      console.log(error)
-    })
+    .catch(err => console.log(err))
     .finally(() => buttonConfirm.textContent = 'Да')
 });
 popupConfirmDelete.setEventListeners();

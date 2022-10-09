@@ -32,12 +32,26 @@ class Card {
     })
   }
 
+  setLikes(likes){
+    this._updateLikeState(likes);
+  }
+
+  _updateLikeState(likes) {
+    this._likesNumber.textContent = likes;
+    this._likeButton.classList.toggle('element__like_enabled');
+  }
+
   _checkForIdentity() {
     if ((this._userId == this._data.owner._id) || (this._userId == undefined)) {
       return true;
     } else {
       return false;
     }
+  }
+
+  deleteCard() {
+    this._element.remove();
+    this._element = null;
   }
 
   _setEventListeners() {
@@ -54,7 +68,7 @@ class Card {
     });
 
     this._deleteButton.addEventListener('click', () => {
-      this._handleCardDelete({data: this._data, element: this._element});
+      this._handleCardDelete({data: this._data});
     });
   }
 
