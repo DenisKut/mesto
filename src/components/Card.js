@@ -27,26 +27,26 @@ class Card {
   _checkForLike() {
     this._likes.forEach(item => {
       if (item._id == this._userId) {
-        this._likeButton.classList.add('element__like_enabled');
+        this._updateLikeState();
       }
     })
   }
 
   setLikes(likes){
-    this._updateLikeState(likes);
+    this._likes = likes;
+    this._updateLikeState();
   }
 
-  _updateLikeState(likes) {
-    this._likesNumber.textContent = likes;
-    this._likeButton.classList.toggle('element__like_enabled');
+  _updateLikeState() {
+    this._likesNumber.textContent = this._likes.length;
+    if(this._checkForIdentity)
+    {
+      this._likeButton.classList.toggle('element__like_enabled');
+    }
   }
 
   _checkForIdentity() {
-    if ((this._userId == this._data.owner._id) || (this._userId == undefined)) {
-      return true;
-    } else {
-      return false;
-    }
+    return this._userId == this._data.owner._id || this._userId == undefined;
   }
 
   deleteCard() {
@@ -78,7 +78,6 @@ class Card {
     this._cardImage = this._element.querySelector('.element__image');
     this._likeButton = this._element.querySelector('.element__like');
     this._likesNumber = this._element.querySelector('.element__number-of-likes');
-    this._likesNumber.textContent = this._likes.length;
     this._setEventListeners();
     if (!this._checkForIdentity()) {
       this._deleteButton.remove();

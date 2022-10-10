@@ -83,14 +83,14 @@ const createCard = (data, userId) => {
     (evt, cardData) => {
       api.addLike(cardData.data)
         .then(res => {
-          card.setLikes(res.likes.length);
+          card.setLikes(res.likes);
         })
         .catch(error => console.log(error));
     },
     (evt, cardData) => {
       api.deleteLike(cardData.data)
         .then(res => {
-          card.setLikes(res.likes.length);
+          card.setLikes(res.likes);
         })
         .catch(error => console.log(error));
     },
