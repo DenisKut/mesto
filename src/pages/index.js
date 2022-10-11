@@ -80,14 +80,14 @@ const createCard = (data, userId) => {
   (data) => {
       popupConfirmDelete.open(data, card);
     },
-    (evt, cardData) => {
+    (cardData) => {
       api.addLike(cardData.data)
         .then(res => {
           card.setLikes(res.likes);
         })
         .catch(error => console.log(error));
     },
-    (evt, cardData) => {
+    (cardData) => {
       api.deleteLike(cardData.data)
         .then(res => {
           card.setLikes(res.likes);

@@ -24,24 +24,21 @@ class Card {
     return cardElement;
   }
 
-  _checkForLike() {
-    this._likes.forEach(item => {
-      if (item._id == this._userId) {
-        this._updateLikeState();
-      }
-    })
+  _isLiked() {
+    return this._likes.some((like) => like._id === this._userId);
   }
 
-  setLikes(likes){
+  setLikes(likes) {
     this._likes = likes;
     this._updateLikeState();
   }
 
   _updateLikeState() {
     this._likesNumber.textContent = this._likes.length;
-    if(this._checkForIdentity)
-    {
-      this._likeButton.classList.toggle('element__like_enabled');
+    if (this._isLiked()) {
+      this._likeButton.classList.add("element__like_enabled");
+    } else {
+      this._likeButton.classList.remove("element__like_enabled");
     }
   }
 
@@ -61,9 +58,9 @@ class Card {
 
     this._likeButton.addEventListener('click', (evt) => {
       if (evt.target.classList.contains('element__like_enabled')) {
-        this._handleLikeDelete(evt, this._cardData);
+        this._handleLikeDelete(this._cardData);
       } else {
-        this._handleLikeAdd(evt, this._cardData);
+        this._handleLikeAdd(this._cardData);
       }
     });
 
@@ -87,7 +84,7 @@ class Card {
     this._cardImage.src = this._image;
     this._cardImage.alt = 'Изображение' + this._text;
     this._element.querySelector('.element__text').textContent = this._text;
-    this._checkForLike();
+    this._updateLikeState();
     return this._element;
   }
 }
